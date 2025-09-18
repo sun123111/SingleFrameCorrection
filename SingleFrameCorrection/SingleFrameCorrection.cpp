@@ -90,6 +90,7 @@ int main() {
         // 2. 相机固定参数
         double pixel_size = 0.0196057 / 1000;  // 像素大小（米）
         double focal_length = 27 / 1000.0;     // 焦距（米）
+		double ground_height_ = 53;           // 地面高度（米）
         std::string base_image_dir = "E:\\Slam\\datasets\\08225G\\H20\\Video\\out\\"; // 图像所在目录
         std::string output_dir = "E:\\Slam\\datasets\\08225G\\H20\\Video\\out\\"; // 输出目录
 
@@ -106,7 +107,7 @@ int main() {
                 // 记录开始时间
                 auto start_time = std::chrono::high_resolution_clock::now();
                 // 创建纠正器实例
-                ImageRectifier rectifier(pixel_size, focal_length);
+                ImageRectifier rectifier(pixel_size, focal_length, ground_height_);
                 // 设置外方位元素
                 rectifier.setExteriorOrientation(
                     params.longitude,

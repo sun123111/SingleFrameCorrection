@@ -1,8 +1,8 @@
 #include "ImageRectifier.h"
 
 // 构造函数
-ImageRectifier::ImageRectifier(double pixel_size, double focal_length)
-    : pixel_size_(pixel_size), focal_length_(focal_length) {
+ImageRectifier::ImageRectifier(double pixel_size, double focal_length, double ground)
+    : pixel_size_(pixel_size), focal_length_(focal_length), ground_height_(ground){
     // 初始化外方位元素
     eo_.setZero();
 }
@@ -255,7 +255,7 @@ void ImageRectifier::processImage(const std::string& input_path, const std::stri
         restoreImageOrientation(orientation);
 
         // 3. 计算相对高度
-        eo_(2) -= 53;  // 假设地面高度为53米
+        eo_(2) -= ground_height_;  // 假设地面高度为53米
 
         // 4. 计算边界框
         Eigen::Matrix<double, 4, 1> bbox = calculateBoundary(dem);

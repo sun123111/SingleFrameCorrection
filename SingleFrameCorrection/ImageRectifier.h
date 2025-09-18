@@ -28,6 +28,7 @@ private:
     // 相机参数
     double pixel_size_;    // 像素大小（米）
     double focal_length_;  // 焦距（米）
+    double ground_height_;
 
     // 外方位元素 (x, y, z, omega, phi, kappa)
     Eigen::Matrix<double, 6, 1> eo_;
@@ -49,7 +50,7 @@ public:
      * @param pixel_size 像素大小（米）
      * @param focal_length 焦距（米）
      */
-    ImageRectifier(double pixel_size, double focal_length);
+    ImageRectifier(double pixel_size, double focal_length, double ground);
 
     /**
      * 析构函数
